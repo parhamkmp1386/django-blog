@@ -24,7 +24,7 @@ def PublishedPostsBlog(request):
 	return render(request, 'blog/publishedPosts.html', {'posts':posts, 'postscount':postscount})
 
 def DraftPostsBlog(request):
-	postscount = Post.objects.all().filter(status='published').count()
+	postscount = Post.objects.all().filter(status='draft').count()
 	posts = Post.objects.all().filter(status='draft')
 	paginator = Paginator(posts, 2)
 	page = request.GET.get('page')
