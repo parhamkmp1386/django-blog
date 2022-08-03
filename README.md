@@ -1,7 +1,7 @@
 <h1>How run ?</h1>
 <h2>Download project</h2>
 <code>git clone https://github.com/parhamkmp1386/django-blog</code>
-<h2>Run project</h2>
+<h2>Foldering</h2>
 <code>mkdir django-blog</code>
 <code>sudo mv env django-blog</code>
 <code>sudo mv project django-blog</code>
