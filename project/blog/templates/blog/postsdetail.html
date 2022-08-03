@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% block title %} {{ post.author }}: {{ post.title }} {% endblock %}
+
+
+{% block content %}
+	<br><br><br><br><br><br>
+	<div style="padding:10px;border: solid black 1px; width:70%;margin:auto;text-align:center;">
+	<h1 style="color:darkblue"> {{ post.title }}</h1>
+	<h4 style="width: 98%;margin:auto;">{{ post.body | linebreaks }}</h4>
+	<h5 style="color:blue;font-weight: bold">Created at: {{ post.created }}</h5>
+	<h5 style="color:blue;font-weight: bold">Last Updated: {{ post.updated }}</h5>
+	{% if post.status == 'published' %}
+		<h5 style='background-color:green;padding:5px;width:145px;font-weight:bold;margin:auto;color:white'>Status: {{ post.status }}</h5>
+	{% else %}
+		<h5 style='background-color:red;padding:5px;width:112px;font-weight:bold;margin:auto;color:white'>Status: {{ post.status }}</h5>
+	{% endif %}
+	<h5 style="color:blue;font-weight:bold;">Author: {{ post.author }}</h5>
+	{% if post.status == 'published' %}
+		<a href="/blog/publisheds/"><button class="btn-hover color-2" style="width:98%">&#8617; Back to published posts list</button></a>
+	{% else %}
+		<a href="/blog/drafts/"><button class="btn-hover color-1" style="width:98%">&#8617; Back to draft posts list</button></a>
+	{% endif %}
+	</div>
+{% endblock %}
+
