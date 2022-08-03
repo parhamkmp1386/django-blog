@@ -14,4 +14,10 @@
 <br>
 <h5><b>(django must installed)</b></h5>
 <h5>install django: </h5> <code>pip3 install django</code>
-<h5>programmer: parham karimipoor</h5>
+<h2>Runserver and save data to database</h2>
+<h5>Save data to database:</h5>
+<code>python3.9 manage.py migrate</code>
+<h5>Runserver (Default port: 8000):</h5>
+<code>python3.9 manage.py runserver</code>
+<p>if you want run on other port:</p>
+<code>python3.9 manage.py runserver [your post exam: 5000]</code>
