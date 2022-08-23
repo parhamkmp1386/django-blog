@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> {% block title %} {% endblock %}-papillokata </title>
+	{% block head %} {% endblock %}
+	<link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+<body>
+
+<div style="background-color: lightblue;padding:10px;text-align:center;display:none" class="show-connection-status">
+    <h3>Click button for found your connection status</h3><br> <button class="check-connection-btn btn-hover color-3">show and update connection status</button> <button class="btn-hover color-1 hide-btn" style="width:5;font-size:20px;%">&#8673;</button>
+</div>
+
+
+{% include 'parent/header.html' %}
+
+
+	{% block content%} {% endblock %}
+
+{% include 'parent/footer.html' %}
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

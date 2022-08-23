@@ -1,0 +1,61 @@
+{% extends 'parent/base.html' %}
+{% block title %} Share Post({{ post.title }}) {% endblock %}
+
+{% block content %} 
+
+	<form method="post" class="container form-group">
+
+	{% if sent %}
+		<div class="alert alert-success col-12 col-lg-9 col-sm-10 col-md-10 col-xl-9 m-auto">The <strong class="text-danger">{{ post.title }}</strong> post shared for <strong class="text-danger">{{ form.cleaned_data.to }}</strong></div><br>
+	{% endif %}
+
+	<h4 class="text-center">Share Post Page|<strong class="text-danger">Post title: {{ post.title }}</strong></h4>
+	{% csrf_token %}
+
+ 	<div class="row">
+ 		<div class="col">
+			<label class="form-control-label">Name and LastName</label>
+	 		<input class="form-control" type="text" name="name" required>
+ 		</div>
+
+ 		<div class="col">
+	 		<label class="form-control-label">Email recipient</label>
+	 		<input class="form-control" type="text" name="to" required>
+ 		</div>
+ 	</div>
+  
+
+
+
+ 		<label class="form-control-label card-block">Message</label>
+ 		<textarea class="form-control" name="message" required></textarea>
+ 		<br><br>
+ 		<input type="submit" value="Sent" class="btn btn-outline-info col-12 col-lg-1 col-sm-10 col-md-10 col-xl-1 ml-sm-5 ml-md-5 ml-lg-0 ml-xl-0">
+ 		<a href="{% url 'blog:post-detail' post.slug post.id %}" class="btn btn-outline-info col-12 col-lg-3 col-sm-10 col-md-10 col-xl-3 ml-sm-6 ml-md-5 ml-lg-0 ml-xl-0">Back to post &#8617;</a>
+
+
+	</form>
+
+
+
+
+<br>
+ {% if form.errors %}
+	<div class="container">
+		<br>
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			Please <strong>fix errors</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	</div>
+		<br>
+		{% for field in form %}
+			{% if field.errors %}
+				{% for error in field.errors %}
+					<div class="alert alert-danger col-12 col-lg-9 col-sm-10 col-md-10 col-xl-9 m-auto alert-dismissible fade show role="alert""><h6 class="d-inline text-primary">{{ field.label }} field:</h6> {{ error }}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div><br></button>
+				{% endfor %}
+			{% endif %}
+		{% endfor %}
+	</div>
+{% endif %}
+
+{% endblock %}

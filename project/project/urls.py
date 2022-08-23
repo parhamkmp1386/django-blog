@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from blog import views
+from .import views as views2
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.HomePage, name='home-page'),
+    path('', views2.HomePage, name='home-page'),
     path('blog/', include('blog.urls'), name='blog-page'),
+    path('shop/', include('shop.urls'), name='shop-page'),
+    path('accounts/', include('accounts.urls'), name='accounts-page'),
 ]

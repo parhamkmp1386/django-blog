@@ -1,0 +1,104 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %} {{ post.author }}: {{ post.title }} {% endblock %}
+
+
+{% block content %}
+
+
+{# send comment success messgae #}
+<div class="mt-5">
+	{% if new_comment %}
+		<div class="alert alert-primary col-12 col-lg-9 col-sm-10 col-md-10 col-xl-9 m-auto alert-dismissible fade show role="alert""><h6 class="d-inline text-primary">Your comment has been sent successfully. After checking, it will be placed in the comments section !<h1 class="text-center">
+			<img src="{% static 'image/wh.png' %}" class="align-self-center">
+		</h1><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div><br></button>
+		
+	{% endif %}
+</div>
+
+{# form errors message #}
+{% if form.errors %}
+{% for field in form %}
+	{% if field.errors %}
+		{% for error in field.errors %}
+			<div class="alert alert-danger col-12 col-lg-9 col-sm-10 col-md-10 col-xl-9 m-auto alert-dismissible fade show role="alert""><h6 class="d-inline text-primary">{{ field.label }} field:</h6> {{ error }}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div><br></button>
+		{% endfor %}
+	{% endif %}
+{% endfor %}
+	</div>
+{% endif %}
+
+
+<div class="container col-11 mt-2" style="border-radius:5px">
+	<div class="card-body p-3 border border-primary ">
+		<h1 class="text-danger"> {{ post.title }}</h1>
+		<h4 class="text-dark">{{ post.body | linebreaks }}</h4>
+		<h5 class="text-primary"><strong class="text-dark">Created at:</strong> {{ post.created }}</h5>
+		<h5 class="text-primary"><strong class="text-dark">Last Update:</strong> {{ post.updated }}</h5>
+		<h5 class="text-success"><strong class="text-dark">Status:</strong> {{ post.status }}</h5>
+		<h5 class="text-primary"><strong class="text-dark">Author:</strong> {{ post.author }}</h5>
+	</div>
+	<div class="card-footer alert-info border border-primary border-top-0 p-4">
+		<div class="row">
+			<div class="col">
+				<a href="/blog/publisheds/"><button class="btn btn-warning" style="width:98%">&#8617; Back post list</button></a>
+			</div>
+			<div class="col">
+				<a href="{% url 'blog:share-post' post.id %}"><button class="btn btn-primary" style="width:98%">Share This Post</button></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{# comments div #}
+<div class="mt-5 col-12 container">
+
+{# comments show #}
+<div class="container mt-3 border border-primary p-3 col-11">
+	<h1>Comments({{ comments_count }})</h1>
+	{% for comment in comments %}
+		<hr>
+		<div class="col-12 pl-3 mt-2 mb-2 border border-dark border-right-0 border-top-0 border-bottom-0" style="height:100px;">
+			<h5 class="text-primary"><div class="text-dark d-inline">Commenter name:</div> {{ comment.name }}</h5>
+			<br>
+			<h5 class="text-primary"><div class="text-dark d-inline">Comment:</div>  {{ comment.body }}</h5>
+		</div>
+
+		{% empty %}
+		<div class="alert alert-danger col-12 col-lg-9 col-sm-10 col-md-10 col-xl-9 m-auto"><h6 class="d-inline text-danger">This post <strong>not have</strong> comment !</h6></div>
+		<h1 class="text-center">
+			<img src="{% static 'image/cheshmak.png' %}" class="align-self-center">
+		</h1>
+	
+	{% endfor %}
+
+</div>
+
+
+
+
+{# Comment form #}
+<form method="post" class="container border border-primary border-top-0 p-3 alert-primary col-11">
+{% csrf_token %}
+<div class="row">
+		<div class="col">
+			<label class="form-control-label">Name and LastName</label>
+			<input class="form-control" type="text" name="name" required>
+		</div>
+
+		<div class="col">
+			<label class="form-control-label card-block">Body</label>
+			<textarea class="form-control" name="body" required></textarea>
+		</div>
+	</div>
+	<hr>
+	<input type="submit" value="Sent" class="btn btn-primary col-12 col-lg-1 col-sm-10 col-md-10 col-xl-1 ml-sm-5 ml-md-5 ml-lg-0 ml-xl-0">
+</form>
+
+
+
+
+{% endblock %}
+
