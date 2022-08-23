@@ -1,0 +1,50 @@
+{% extends 'parent/base.html' %}
+{% block title %} Accounts {% endblock %}
+
+{% block content %}
+
+  <div class="bd-example bd-example-tabs container-fluid" style="margin-top:200px;">
+  <div class="row">
+    <div class="col-4 col-xl-3">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link col-12 active show" id="v-pills-userinfo-tab" data-toggle="pill" href="#v-pills-userinfo" role="tab" aria-controls="v-pills-userinfo" aria-selected="true">User Info</a>
+        <a class="nav-link" id="v-pills-contactus-tab" data-toggle="pill" href="#v-pills-contactus" role="tab" aria-controls="v-pills-contactus" aria-selected="false">ContactUs</a>
+        <a class="nav-link" id="v-pills-logout-tab" data-toggle="pill" href="#v-pills-logout" role="tab" aria-controls="v-pills-logout" aria-selected="false">LogOut</a>
+        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+      </div>
+    </div>
+    <div class="col-8 col-xl-9 float-right">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade active show" id="v-pills-userinfo" role="tabpanel" aria-labelledby="v-pills-userinfo-tab">
+          <div class="alert alert-primary">
+          	<div class="row">
+          		<p class="col col-5 col-xl-3"><b>FirstName: </b> {{ account.user.first_name }}</p>
+          		<p class="col col-5 col-xl-3"><b>LastName: </b> {{ account.user.last_name }}</p>
+          		<p class="col col-5 col-xl-3"><b>Age: </b> {{ account.age }}</p>
+          		<p class="col col-5 col-xl-3"><b>Phone: </b> {{ account.phone }}</p>
+          	</div>
+          	<hr>
+          	<div class="row">
+          		<p class="col col-12 text-center"><b>Address: </b> {{ account.address }}</p>
+          	</div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="v-pills-contactus" role="tabpanel" aria-labelledby="v-pills-contactus-tab">
+         <div class="alert alert-primary col-xl-5 col-7">
+         	<div class="row">
+         		<p class="col-12">Click button to go <strong>ContactUs</strong>Page</p>
+         		<a class="btn btn-info col-12" href="/accounts/contactus">Click me to go :)</a>
+         	</div>
+         </div>
+        </div>
+        <div class="tab-pane fade" id="v-pills-logout" role="tabpanel" aria-labelledby="v-pills-logout-tab">
+          <p>Logut page</p>
+        </div>
+        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+          <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

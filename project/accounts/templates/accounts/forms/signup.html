@@ -1,0 +1,79 @@
+{% extends 'parent/base.html' %}
+
+{% block title %} Signup {% endblock %}
+
+{% block content %}
+
+
+ <form method="post" class="container form-group">
+
+ 	<h4 class="text-center mt-1">SignUp Form</h4>
+ 	{% csrf_token %}
+ 	
+ 	<div class="row">
+ 		<div class="col">
+ 		<label class="form-control-label">Name</label>
+ 		<input class="form-control" type="text" name="name" required value="">
+ 		</div>
+
+ 		<div class="col">
+ 		<label class="form-control-label">Lastname</label>
+ 		<input class="form-control" type="text" name="lastname" required value="">
+ 		</div>
+ 	</div>
+
+ 	<div class="row">
+	 	<div class="col">
+	 	<label class="form-control-label">Phone number</label>
+	 	<input class="form-control" type="text" name="phone" required  value="">
+	 	</div>
+
+ 		<div class="col">
+ 		<label class="form-control-label">Age</label>
+		<input class="form-control" type="number" name="age" required value="">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+	 	<label class="form-control-label">Address</label>
+ 		<input class="form-control" type="text" name="address" value="">
+		</div>
+
+	<div class="col">
+	 	<label class="form-control-label">Gender</label>
+	 	<select name="gender" class="form-control" required>
+		<option value="male">Male</option>
+		<option value="fmale">Fmale</option>
+ 		</select>
+ 	</div>
+	</div>
+ 	<br>
+ 	<input type="submit" value="Signup" class="btn btn-outline-info col-12 col-lg-1 col-sm-10 col-md-10 col-xl-1 ml-sm-5 ml-md-5 ml-lg-0 ml-xl-0">
+
+ </form>
+
+
+  {% if form.errors %}
+ 	<div class="container">
+ 		<br>
+ 		<br>
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">Please <strong>fix errors</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+ 		<br>
+ 		{% for field in form %}
+ 			{% if field.errors %}
+ 				{% for error in field.errors %}
+ 					<div class="alert alert-danger col-12 col-lg-9 col-sm-10 col-md-10 col-xl-9 m-auto alert-dismissible fade show role="alert""><h6 class="d-inline text-primary">{{ field.label }} field:</h6> {{ error }}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div><br></button>
+ 				{% endfor %}
+ 			{% endif %}
+ 		{% endfor %}
+
+ 		{% if form.non_field_errors %}
+ 			<div class="alert alert-danger col-12 col-lg-9 col-sm-10 col-md-10 col-xl-9 m-auto alert-dismissible fade show role="alert""><h6 class="d-inline text-primary">{{for.non_field_error}}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div><br></button>
+ 		{% endif %}
+
+ 	</div>
+ {% endif %}
+
+
+{% endblock %}
